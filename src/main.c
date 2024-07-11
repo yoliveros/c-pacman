@@ -10,15 +10,24 @@ int main() {
 
   Vector2 center = {(GetScreenWidth()) / 2.0, (GetScreenHeight() / 2.0)};
 
-  SetTargetFPS(8);
+  SetTargetFPS(60);
 
   float end_angle = 300;
 
   while (!WindowShouldClose()) {
+    if (IsKeyDown(KEY_RIGHT))
+      center.x += 2.0f;
+    if (IsKeyDown(KEY_LEFT))
+      center.x -= 2.0f;
+    if (IsKeyDown(KEY_UP))
+      center.y -= 2.0f;
+    if (IsKeyDown(KEY_DOWN))
+      center.y += 2.0f;
+
     BeginDrawing();
+    ClearBackground(BLACK);
     DrawRectangleLinesEx(touch_area, 10, Fade(LIGHTGRAY, 0.6f));
-    DrawCircleSector(center, 100, 0, end_angle, 20, RED);
-    DrawText("Hola world", 300, 200, 20, WHITE);
+    DrawCircleSector(center, 10, 0, end_angle, 20, YELLOW);
     EndDrawing();
   }
 
